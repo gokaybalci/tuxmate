@@ -274,7 +274,7 @@ export default function Home() {
                             <div className="flex items-center gap-4">
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img
-                                    src="/tuxmate.png"
+                                    src="tuxmate.png"
                                     alt="TuxMate Logo"
                                     className="w-16 h-16 sm:w-[72px] sm:h-[72px] object-contain shrink-0"
                                 />

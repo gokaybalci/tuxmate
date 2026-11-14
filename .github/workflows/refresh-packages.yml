@@ -1,0 +1,49 @@
+name: Refresh package data
+
+on:
+  schedule:
+    - cron: "0 4 */3 * *" # every 3 days, 04:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: refresh-packages
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Refresh Flathub verified list
+        run: node scripts/fetch-verified-flatpaks.mjs
+
+      - name: Check package names
+        run: node scripts/refresh-packages.mjs
+        env:
+          REPORT_FILE: ${{ runner.temp }}/report.md
+
+      - name: Tests
+        run: npm test
+
+      # One rolling PR: each run updates the same branch instead of piling up PRs
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          branch: bot/refresh-packages
+          delete-branch: true
+          commit-message: "data: refresh package names"
+          title: "data: refresh package names"
+          body-path: ${{ runner.temp }}/report.md
+          labels: data-refresh

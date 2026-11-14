@@ -67,11 +67,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         {/* PWA manifest and meta tags */}
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="manifest" href="manifest.json" />
         <meta name="theme-color" content="#8B5CF6" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <link rel="apple-touch-icon" href="/icon-192.png" />
+        <link rel="apple-touch-icon" href="icon-192.png" />
 
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
 
@@ -80,7 +80,7 @@ export default function RootLayout({
           __html: `
           if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
-              navigator.serviceWorker.register('/sw.js').then(function(reg) {
+              navigator.serviceWorker.register('sw.js').then(function(reg) {
                 console.log('SW registered:', reg.scope);
               }).catch(function(err) {
                 console.log('SW registration failed:', err);

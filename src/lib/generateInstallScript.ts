@@ -42,6 +42,7 @@ export function generateInstallScript(options: GenerateOptions): string {
         case 'debian': scriptContent = injectUniversal(generateDebianScript(packages)); break;
         case 'arch': scriptContent = injectUniversal(generateArchScript(packages, helper)); break;
         case 'fedora': scriptContent = injectUniversal(generateFedoraScript(packages)); break;
+        case 'nobara': scriptContent = injectUniversal(generateFedoraScript(packages, 'Nobara')); break;
         case 'opensuse': scriptContent = injectUniversal(generateOpenSUSEScript(packages)); break;
         case 'flatpak': scriptContent = injectUniversal(generateFlatpakScript(packages)); break;
         case 'snap': scriptContent = injectUniversal(generateSnapScript(packages)); break;
@@ -94,7 +95,8 @@ export function generateCommandline(options: GenerateOptions): string {
         case 'ubuntu':
         case 'debian': return appendScripts(appendExtras(pkgList ? `sudo apt install -y ${pkgList}` : ''));
         case 'arch': return appendScripts(appendExtras(pkgList ? `yay -S --needed --noconfirm ${pkgList}` : ''));
-        case 'fedora': return appendScripts(appendExtras(pkgList ? `sudo dnf install -y ${pkgList}` : ''));
+        case 'fedora':
+        case 'nobara': return appendScripts(appendExtras(pkgList ? `sudo dnf install -y ${pkgList}` : ''));
         case 'opensuse': return appendScripts(appendExtras(pkgList ? `sudo zypper install -y ${pkgList}` : ''));
         case 'nix': return generateNixConfig(packages); // Nix handles its own thing without extras as simple cmds
         case 'flatpak': return appendScripts(appendExtras(pkgList ? `flatpak install flathub -y ${pkgList}` : ''));

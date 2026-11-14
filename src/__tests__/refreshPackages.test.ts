@@ -1,6 +1,5 @@
 import { describe, it, expect } from 'vitest';
-// @ts-expect-error plain .mjs script without types
-import { pickRepos, packageName, matchName } from '../../scripts/refresh-packages.mjs';
+import { pickRepos, packageName, matchName, rpmNames } from '../../scripts/refresh-packages.mjs';
 
 describe('refresh-packages helpers', () => {
     const repos = ['debian_12', 'debian_13', 'debian_14', 'debian_14', 'debian_13', 'debian_unstable', 'fedora_43', 'fedora_44', 'fedora_rawhide',
@@ -23,5 +22,12 @@ describe('refresh-packages helpers', () => {
         expect(matchName(['kdePackages.kate'], new Set(['kate']))).toBe('kdePackages.kate');
         expect(matchName(['kdePackages.kate', 'libsForQt5.kate'], new Set(['kate']))).toBeNull();
         expect(matchName(['something-else'], new Set(['btop']))).toBeNull();
+    });
+
+    it('reads package and provides names from rpm primary metadata', () => {
+        const xml = `<package><name>wget2-wget</name><format><rpm:provides>
+            <rpm:entry name="wget" flags="EQ" ver="2"/><rpm:entry name="/usr/bin/wget"/><rpm:entry name="config(wget2)"/>
+        </rpm:provides><rpm:requires><rpm:entry name="libc"/></rpm:requires></format></package>`;
+        expect([...rpmNames(xml)].sort()).toEqual(['wget', 'wget2-wget']);
     });
 });

@@ -16,7 +16,7 @@ import system from './apps/system.json';
 import aiTools from './apps/ai-tools.json';
 
 
-export type DistroId = 'ubuntu' | 'debian' | 'arch' | 'fedora' | 'opensuse' | 'nix' | 'flatpak' | 'snap' | 'homebrew';
+export type DistroId = 'ubuntu' | 'debian' | 'arch' | 'fedora' | 'nobara' | 'opensuse' | 'nix' | 'flatpak' | 'snap' | 'homebrew';
 export type UniversalTargetId = 'npm' | 'script';
 
 export type Category =
@@ -76,6 +76,7 @@ export const distros: Distro[] = [
     { id: 'debian', name: 'Debian', iconUrl: 'https://api.iconify.design/simple-icons/debian.svg?color=%23A81D33', color: '#A81D33', installPrefix: 'sudo apt install -y' },
     { id: 'arch', name: 'Arch', iconUrl: 'https://api.iconify.design/simple-icons/archlinux.svg?color=%231793D1', color: '#1793D1', installPrefix: 'sudo pacman -S --needed --noconfirm' },
     { id: 'fedora', name: 'Fedora', iconUrl: 'https://api.iconify.design/simple-icons/fedora.svg?color=%2351A2DA', color: '#51A2DA', installPrefix: 'sudo dnf install -y' },
+    { id: 'nobara', name: 'Nobara', iconUrl: 'https://api.iconify.design/simple-icons/nobaralinux.svg?color=%23888888', color: '#888888', installPrefix: 'sudo dnf install -y' },
     { id: 'opensuse', name: 'OpenSUSE', iconUrl: 'https://api.iconify.design/simple-icons/opensuse.svg?color=%2373BA25', color: '#73BA25', installPrefix: 'sudo zypper install -y' },
     { id: 'nix', name: 'Nix', iconUrl: 'https://api.iconify.design/simple-icons/nixos.svg?color=%235277C3', color: '#5277C3', installPrefix: 'nix-env -iA nixpkgs.' },
     { id: 'flatpak', name: 'Flatpak', iconUrl: 'https://api.iconify.design/simple-icons/flatpak.svg?color=%234A90D9', color: '#4A90D9', installPrefix: 'flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo && flatpak install flathub -y' },
@@ -83,6 +84,7 @@ export const distros: Distro[] = [
     { id: 'homebrew', name: 'Homebrew', iconUrl: 'https://api.iconify.design/simple-icons/homebrew.svg?color=%23FBB040', color: '#FBB040', installPrefix: 'brew install' },
 ];
 
+// Nobara uses dnf on a Fedora base: the Fedora package works unless an app sets its own "nobara" target
 export const apps: AppData[] = [
     ...(webBrowsers as AppData[]),
     ...(communication as AppData[]),
@@ -100,7 +102,7 @@ export const apps: AppData[] = [
     ...(fileSharing as AppData[]),
     ...(system as AppData[]),
     ...(aiTools as AppData[])
-];
+].map(app => app.targets.nobara || !app.targets.fedora ? app : { ...app, targets: { ...app.targets, nobara: app.targets.fedora } });
 
 export const categories: Category[] = [
     'Web Browsers',

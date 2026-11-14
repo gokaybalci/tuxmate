@@ -106,3 +106,12 @@ describe('Data Module', () => {
         });
     });
 });
+
+describe('nobara targets', () => {
+    it('falls back to the fedora package unless an app sets its own', () => {
+        for (const app of apps) {
+            if (app.targets.fedora) expect(app.targets.nobara).toBeTruthy();
+        }
+        expect(apps.find(a => a.id === 'btop')?.targets.nobara).toBe('btop');
+    });
+});

@@ -1,5 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import zlib from 'node:zlib';
 import { fileURLToPath } from 'node:url';
 
 // Scheduled package-data refresher (see .github/workflows/refresh-packages.yml).
@@ -121,6 +122,44 @@ async function snapInfo(name) {
     }
 }
 
+// Nobara ships its own repos (Fedora snapshot, updates, terra, pikaos); same set /etc/yum.repos.d enables
+const NOBARA_REPOS = [
+    'https://mirrors.nobaraproject.org/rolling/x86_64/nobara',
+    'https://mirrors.nobaraproject.org/rolling/x86_64/baseos',
+    'https://mirrors.nobaraproject.org/rolling/x86_64/terra',
+    'https://rpm.pika-os.com/nobara/media/x86_64/', // a baseurl, not a mirrorlist
+];
+
+// Package names plus "provides" names, i.e. everything `dnf install X` accepts by name
+export function rpmNames(primaryXml) {
+    const names = new Set();
+    for (const m of primaryXml.matchAll(/<name>([^<]+)<\/name>|<rpm:provides>([\s\S]*?)<\/rpm:provides>/g)) {
+        if (m[1]) names.add(m[1]);
+        else for (const e of m[2].matchAll(/name="([^"(/]+)"/g)) names.add(e[1]);
+    }
+    return names;
+}
+
+async function nobaraPackages() {
+    const all = new Set();
+    for (const repo of NOBARA_REPOS) {
+        let base = repo;
+        if (!repo.endsWith('/')) {
+            const list = await (await request(repo)).text();
+            base = list.split('\n').find(l => l.startsWith('http'))?.trim();
+            if (!base) throw new Error(`empty mirrorlist ${repo}`);
+        }
+        base = base.replace(/\/?$/, '/');
+        const repomd = await (await request(base + 'repodata/repomd.xml')).text();
+        const href = repomd.match(/<data type="primary">[\s\S]*?href="([^"]+)"/)?.[1];
+        if (!href) throw new Error(`no primary metadata in ${base}`);
+        const buf = Buffer.from(await (await request(base + href)).arrayBuffer());
+        const xml = (href.endsWith('.zst') ? zlib.zstdDecompressSync(buf) : href.endsWith('.gz') ? zlib.gunzipSync(buf) : buf).toString();
+        for (const n of rpmNames(xml)) all.add(n);
+    }
+    return all;
+}
+
 // --- main ---
 
 async function main() {
@@ -129,6 +168,9 @@ async function main() {
     const statsHtml = await (await repology('https://repology.org/repositories/statistics')).text();
     const repos = pickRepos([...statsHtml.matchAll(/repository\/([a-z0-9_]+)/g)].map(m => m[1]));
     console.log('Repos:', repos);
+
+    const nobara = await nobaraPackages().catch(e => { console.warn('Nobara repos unavailable:', e.message); return null; });
+    console.log('Nobara packages:', nobara?.size ?? 'skipped');
 
     // target -> how to look it up on Repology
     const REPOLOGY = {
@@ -201,7 +243,7 @@ async function main() {
             if (project && gaps.length) {
                 const res = await repology(`https://repology.org/api/v1/project/${encodeURIComponent(project)}`).catch(() => null);
                 const entries = res?.ok ? await res.json() : [];
-                const known = new Set([app.id, ...Object.values(app.targets).map(packageName)]);
+                const known = knownNames(app);
                 for (const target of gaps) {
                     for (const [repo, type] of REPOLOGY[target]) {
                         if (repo === 'aur') continue; // AUR fills need a human eye
@@ -214,6 +256,21 @@ async function main() {
                         changed = true;
                         break;
                     }
+                }
+            }
+
+            // Nobara: the Fedora name is used unless the app sets "nobara"; check it against Nobara's own repos
+            const nobaraValue = app.targets.nobara ?? app.targets.fedora;
+            if (!nobara) {
+                if (nobaraValue) unknown.push(`${app.id}/nobara`);
+            } else if (!nobaraValue || !nobara.has(packageName(nobaraValue))) {
+                const pick = matchName([...knownNames(app)].filter(n => nobara.has(n)), knownNames(app));
+                if (pick) {
+                    app.targets.nobara = pick;
+                    filled.push(`${app.id}/nobara = \`${pick}\``);
+                    changed = true;
+                } else if (nobaraValue) {
+                    missing[`${app.id}/nobara`] = nobaraValue;
                 }
             }
         }
@@ -252,7 +309,7 @@ async function main() {
     const list = (items) => items.length ? items.map(i => `- ${i}`).join('\n') : '_none_';
     const report = `## Package data refresh
 
-Checked ${checkedApps.size} apps against ${repos.ubuntu}, ${repos.debian}, ${repos.fedora}, openSUSE Tumbleweed, nixpkgs unstable, Arch/AUR, Homebrew, Flathub and the Snap Store.
+Checked ${checkedApps.size} apps against ${repos.ubuntu}, ${repos.debian}, ${repos.fedora}, Nobara (its own repos), openSUSE Tumbleweed, nixpkgs unstable, Arch/AUR, Homebrew, Flathub and the Snap Store.
 
 ### Newly missing (${newlyMissing.length})
 The package name was not found any more. Fix or remove the target before merging.
@@ -283,6 +340,8 @@ ${list(ideas.map(h => `**${h.name}** (\`${h.app_id}\`): ${h.summary}`))}
     console.log(`\nReport: ${REPORT_FILE}\nnewly missing ${newlyMissing.length}, filled ${filled.length}, unknown ${unknown.length}`);
 }
 
+const knownNames = (app) => new Set([app.id, ...Object.entries(app.targets)
+    .filter(([t]) => t !== 'npm' && t !== 'script').map(([, v]) => packageName(v))]);
 const sortObj = (o) => Object.fromEntries(Object.entries(o).sort(([a], [b]) => a.localeCompare(b)));
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {

@@ -1,7 +1,7 @@
 import { generateAsciiHeader, generateSharedUtils, escapeShellString, type PackageInfo } from './shared';
 
-export function generateFedoraScript(packages: PackageInfo[]): string {
-    return generateAsciiHeader('Fedora', packages.length) + generateSharedUtils('fedora', packages.length) + `
+export function generateFedoraScript(packages: PackageInfo[], distroName = 'Fedora'): string {
+    return generateAsciiHeader(distroName, packages.length) + generateSharedUtils(distroName, packages.length) + `
 is_installed() { rpm -q "$1" &>/dev/null; }
 
 install_pkg() {

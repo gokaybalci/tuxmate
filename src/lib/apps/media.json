@@ -79,7 +79,8 @@
             "fedora": "strawberry",
             "opensuse": "strawberry",
             "nix": "strawberry",
-            "flatpak": "org.strawberrymusicplayer.strawberry"
+            "flatpak": "org.strawberrymusicplayer.strawberry",
+            "homebrew": "--cask strawberry"
         },
         "unavailableReason": "Strawberry is not available as a Snap package.",
         "icon": {
@@ -211,7 +212,8 @@
             "nix": "handbrake",
             "flatpak": "fr.handbrake.ghb",
             "snap": "handbrake-jz",
-            "homebrew": "handbrake"
+            "homebrew": "handbrake",
+            "nobara": "handbrake"
         },
         "unavailableReason": "HandBrake is not in official Fedora repos. Use [Flatpak](https://flathub.org/apps/details/fr.handbrake.ghb) or [Snap](https://snapcraft.io/handbrake-jz) instead.",
         "icon": {

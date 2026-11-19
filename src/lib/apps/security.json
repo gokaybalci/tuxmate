@@ -9,7 +9,8 @@
             "nix": "bitwarden",
             "flatpak": "com.bitwarden.desktop",
             "snap": "bitwarden",
-            "homebrew": "--cask bitwarden"
+            "homebrew": "--cask bitwarden",
+            "opensuse": "bitwarden"
         },
         "unavailableReason": "Not in official repos. Use [Flatpak](https://flathub.org/apps/details/com.bitwarden.desktop) or [Snap](https://snapcraft.io/bitwarden) or download from [bitwarden.com/download](https://bitwarden.com/download/).",
         "icon": {
@@ -51,7 +52,8 @@
             "arch": "veracrypt",
             "opensuse": "veracrypt",
             "nix": "veracrypt",
-            "homebrew": "--cask veracrypt"
+            "homebrew": "--cask veracrypt",
+            "nobara": "veracrypt"
         },
         "unavailableReason": "Not in official Debian/Ubuntu/Fedora repos. Download from [veracrypt.fr/en/Downloads](https://veracrypt.fr/en/Downloads.html).",
         "icon": {

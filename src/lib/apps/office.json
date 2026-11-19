@@ -199,7 +199,8 @@
             "nix": "zotero",
             "flatpak": "org.zotero.Zotero",
             "snap": "zotero-snap",
-            "homebrew": "--cask zotero"
+            "homebrew": "--cask zotero",
+            "nobara": "zotero"
         },
         "unavailableReason": "Not in official Ubuntu/Debian repos. Use [Flatpak](https://flathub.org/apps/org.zotero.Zotero)/[Snap](https://snapcraft.io/zotero-snap) or download from [zotero.org](https://www.zotero.org/download/).",
         "icon": {

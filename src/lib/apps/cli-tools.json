@@ -77,7 +77,8 @@
             "arch": "eza",
             "opensuse": "eza",
             "nix": "eza",
-            "homebrew": "eza"
+            "homebrew": "eza",
+            "fedora": "eza"
         },
         "unavailableReason": "Unmaintained on Fedora; removed from repos. CLI-only (no Flatpak/Snap).",
         "icon": {
@@ -269,7 +270,8 @@
             "arch": "yazi",
             "opensuse": "yazi",
             "nix": "yazi",
-            "homebrew": "yazi"
+            "homebrew": "yazi",
+            "nobara": "yazi"
         },
         "unavailableReason": "Not in most repos. Install via [cargo](https://crates.io/crates/yazi) or download from [github.com/sxyazi/yazi](https://github.com/sxyazi/yazi/releases).",
         "icon": {
@@ -396,7 +398,8 @@
         "targets": {
             "arch": "superfile",
             "nix": "superfile",
-            "homebrew": "superfile"
+            "homebrew": "superfile",
+            "nobara": "superfile"
         },
         "unavailableReason": "Install via `go install` or see [superfile.dev](https://superfile.dev/getting-started/installation/).",
         "icon": {

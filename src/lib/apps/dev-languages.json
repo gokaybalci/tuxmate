@@ -78,7 +78,9 @@
             "opensuse": "rustup",
             "nix": "rustup",
             "snap": "rustup --classic",
-            "homebrew": "rust"
+            "homebrew": "rust",
+            "ubuntu": "rustup",
+            "debian": "rustup"
         },
         "unavailableReason": "Install via [rustup.rs](https://rustup.rs) on Ubuntu and Debian.",
         "icon": {
@@ -164,7 +166,8 @@
             "arch": "deno",
             "opensuse": "deno",
             "nix": "deno",
-            "homebrew": "deno"
+            "homebrew": "deno",
+            "nobara": "deno"
         },
         "unavailableReason": "Install via `curl -fsSL https://deno.land/install.sh | sh` on other distros.",
         "icon": {
@@ -182,7 +185,8 @@
         "targets": {
             "arch": "bun",
             "nix": "bun",
-            "homebrew": "bun"
+            "homebrew": "bun",
+            "opensuse": "bun"
         },
         "unavailableReason": "Not in most package managers. Install via official script: `curl -fsSL https://bun.sh/install | bash`. More info at [bun.sh](https://bun.sh/).",
         "icon": {
@@ -261,7 +265,8 @@
         "targets": {
             "arch": "uv",
             "nix": "uv",
-            "homebrew": "uv"
+            "homebrew": "uv",
+            "nobara": "uv"
         },
         "unavailableReason": "Install via `curl -LsSf https://astral.sh/uv/install.sh | sh`. See [installation guide](https://docs.astral.sh/uv/getting-started/installation/).",
         "icon": {

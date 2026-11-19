@@ -7,7 +7,8 @@
     "targets": {
       "arch": "cursor-bin",
       "nix": "code-cursor",
-      "homebrew": "--cask cursor"
+      "homebrew": "--cask cursor",
+      "nobara": "cursor"
     },
     "unavailableReason": "Only available via [AUR](https://aur.archlinux.org/packages/cursor-bin) or Nix. Download from [cursor.com/download](https://cursor.com/download).",
     "icon": {
@@ -65,7 +66,9 @@
       "arch": "zed",
       "nix": "zed-editor",
       "flatpak": "dev.zed.Zed",
-      "homebrew": "--cask zed"
+      "homebrew": "--cask zed",
+      "opensuse": "zed",
+      "nobara": "zed"
     },
     "unavailableReason": "Not in official repos. Use [Flatpak](https://flathub.org/en/apps/dev.zed.Zed) or see [zed.dev/docs/linux](https://zed.dev/docs/linux#other-ways-to-install-zed-on-linux) for other methods.",
     "icon": {

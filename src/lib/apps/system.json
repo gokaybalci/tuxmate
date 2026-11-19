@@ -302,7 +302,9 @@
         "targets": {
             "arch": "resources",
             "nix": "resources",
-            "flatpak": "net.nokyan.Resources"
+            "flatpak": "net.nokyan.Resources",
+            "opensuse": "resources",
+            "nobara": "resources"
         },
         "icon": {
             "type": "url",
@@ -320,7 +322,8 @@
             "arch": "cpu-x",
             "fedora": "cpu-x",
             "nix": "cpu-x",
-            "flatpak": "io.github.thetumultuousunicornofdarkness.cpu-x"
+            "flatpak": "io.github.thetumultuousunicornofdarkness.cpu-x",
+            "opensuse": "cpu-x"
         },
         "icon": {
             "type": "url",
@@ -336,7 +339,8 @@
             "arch": "mission-center",
             "nix": "mission-center",
             "flatpak": "io.missioncenter.MissionCenter",
-            "snap": "mission-center"
+            "snap": "mission-center",
+            "nobara": "mission-center"
         },
         "unavailableReason": "Not in most official repos. Use [Flatpak](https://flathub.org/apps/io.github.MissionCenter.MissionCenter) or see [Mission Center](https://gitlab.com/mission-center-devs/mission-center/) for more information.",
         "icon": {
@@ -355,7 +359,8 @@
             "opensuse": "OpenRGB",
             "nix": "openrgb",
             "homebrew": "--cask openrgb",
-            "flatpak": "org.openrgb.OpenRGB"
+            "flatpak": "org.openrgb.OpenRGB",
+            "ubuntu": "openrgb"
         },
         "unavailableReason": "Not in available in Snap. Use the [Flatpak version](https://flathub.org/en/apps/org.openrgb.OpenRGB) instead. Available on Debian 14/Sid and Ubuntu 25.11 or later Official repos as `openrgb`",
         "icon": {

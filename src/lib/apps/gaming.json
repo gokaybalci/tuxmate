@@ -11,7 +11,8 @@
             "nix": "steam",
             "flatpak": "com.valvesoftware.Steam",
             "snap": "steam",
-            "homebrew": "--cask steam"
+            "homebrew": "--cask steam",
+            "debian": "steam"
         },
         "unavailableReason": "Debian requires editing /etc/apt/sources.list adding \"contrib\" to the end of the line that starts with \"deb\" or \"deb-src\" and `sudo apt update` before installing `sudo apt install -y steam-installer`. Arch requires [multilib](https://wiki.archlinux.org/title/Official_repositories#multilib) enabled first: uncomment `[multilib]` section in `/etc/pacman.conf`, then run `sudo pacman -Syu`, then `sudo pacman -S steam`.",
         "icon": {
@@ -32,7 +33,8 @@
             "fedora": "lutris",
             "opensuse": "lutris",
             "nix": "lutris",
-            "flatpak": "net.lutris.Lutris"
+            "flatpak": "net.lutris.Lutris",
+            "debian": "lutris"
         },
         "unavailableReason": "Debian requires editing /etc/apt/sources.list adding \"contrib\" to the end of the line that starts with \"deb\" or \"deb-src\" and `sudo apt update` before installing `sudo apt install -y lutris`. Lutris is not available as a Snap package.",
         "icon": {
@@ -70,7 +72,10 @@
             "arch": "prismlauncher",
             "nix": "prismlauncher",
             "flatpak": "org.prismlauncher.PrismLauncher",
-            "homebrew": "--cask prismlauncher"
+            "homebrew": "--cask prismlauncher",
+            "ubuntu": "prismlauncher",
+            "opensuse": "prismlauncher",
+            "nobara": "prismlauncher"
         },
         "unavailableReason": "Only available via [AUR](https://aur.archlinux.org/packages/prismlauncher) or [Flatpak](https://flathub.org/apps/details/org.prismlauncher.PrismLauncher). see [prismlauncher.org](https://prismlauncher.org/download/) for more info.",
         "icon": {

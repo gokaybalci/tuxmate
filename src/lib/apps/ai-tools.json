@@ -8,7 +8,9 @@
       "homebrew": "opencode",
       "arch": "opencode",
       "nix": "opencode",
-      "script": "curl -fsSL https://opencode.ai/install | bash"
+      "script": "curl -fsSL https://opencode.ai/install | bash",
+      "opensuse": "opencode",
+      "nobara": "opencode"
     },
     "note": "Falls back to official installer (opencode.ai/install) on distros without a native package.",
     "icon": {
@@ -26,7 +28,8 @@
     "targets": {
       "npm": "@openai/codex",
       "homebrew": "codex",
-      "nix": "codex"
+      "nix": "codex",
+      "nobara": "codex"
     },
     "note": "Requires Node.js runtime. Installed globally via npm where native packages are unavailable.",
     "icon": {
@@ -44,7 +47,9 @@
     "targets": {
       "npm": "@google/gemini-cli",
       "homebrew": "gemini-cli",
-      "nix": "gemini-cli"
+      "nix": "gemini-cli",
+      "opensuse": "gemini-cli",
+      "arch": "gemini-cli"
     },
     "note": "Requires Node.js runtime. Installed globally via npm where native packages are unavailable.",
     "icon": {
@@ -98,7 +103,10 @@
     "category": "AI Tools",
     "targets": {
       "nix": "llama-cpp",
-      "homebrew": "llama.cpp"
+      "homebrew": "llama.cpp",
+      "ubuntu": "llama.cpp",
+      "fedora": "llama-cpp",
+      "arch": "llama-cpp"
     },
     "unavailableReason": "Available via [brew or nix](https://github.com/ggml-org/llama.cpp/blob/master/docs/install.md), [Docker](https://github.com/ggml-org/llama.cpp/blob/master/docs/docker.md), pre-built [releases](https://github.com/ggml-org/llama.cpp/releases), or [build from source](https://github.com/ggml-org/llama.cpp/blob/master/docs/build.md).",
     "icon": {

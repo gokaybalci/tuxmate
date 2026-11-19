@@ -69,7 +69,8 @@
             "arch": "starship",
             "opensuse": "starship",
             "nix": "starship",
-            "homebrew": "starship"
+            "homebrew": "starship",
+            "nobara": "starship"
         },
         "unavailableReason": "Not in Fedora repos. Install via `curl -sS https://starship.rs/install.sh | sh` or see [starship.rs](https://starship.rs/).",
         "icon": {
@@ -174,7 +175,9 @@
         "targets": {
             "arch": "ghostty",
             "nix": "ghostty",
-            "homebrew": "--cask ghostty"
+            "homebrew": "--cask ghostty",
+            "opensuse": "ghostty",
+            "nobara": "ghostty"
         },
         "unavailableReason": "Not in most repos. See [official binaries](https://ghostty.org/docs/install/binary#linux-(official)) or build from source.",
         "icon": {

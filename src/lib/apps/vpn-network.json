@@ -25,7 +25,8 @@
       "arch": "proton-vpn-gtk-app",
       "nix": "protonvpn-gui",
       "flatpak": "com.protonvpn.www",
-      "homebrew": "--cask protonvpn"
+      "homebrew": "--cask protonvpn",
+      "ubuntu": "proton-vpn-gtk-app"
     },
     "unavailableReason": "Not in official repos. Use Flatpak or follow instructions at [protonvpn.com/support/linux-vpn-setup](https://protonvpn.com/support/linux-vpn-setup/).",
     "icon": {

@@ -325,7 +325,8 @@
             "nix": "bruno",
             "flatpak": "com.usebruno.Bruno",
             "snap": "bruno",
-            "homebrew": "--cask bruno"
+            "homebrew": "--cask bruno",
+            "nobara": "bruno"
         },
         "unavailableReason": "Not in official repos. Use [Flatpak](https://flathub.org/apps/com.usebruno.Bruno)/[Snap](https://snapcraft.io/bruno) or download from [usebruno.com](https://www.usebruno.com/downloads).",
         "icon": {
@@ -361,7 +362,8 @@
         "targets": {
             "arch": "yaak-bin",
             "nix": "yaak",
-            "homebrew": "--cask yaak"
+            "homebrew": "--cask yaak",
+            "nobara": "yaak"
         },
         "unavailableReason": "Not in most official repos. Download .deb/.rpm or AppImage from [yaak.app](https://yaak.app/download).",
         "icon": {

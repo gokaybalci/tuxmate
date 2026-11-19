@@ -168,7 +168,9 @@
             "nix": "cura",
             "flatpak": "com.ultimaker.cura",
             "snap": "cura-slicer",
-            "homebrew": "--cask ultimaker-cura"
+            "homebrew": "--cask ultimaker-cura",
+            "ubuntu": "cura",
+            "debian": "cura"
         },
         "unavailableReason": "Available through snap, flatpak and appimage. For Debian 13 or newer; Ubuntu 25.04 or newer it is available through `sudo apt install -y cura`.",
         "icon": {
@@ -189,7 +191,8 @@
             "nix": "godot",
             "flatpak": "org.godotengine.Godot",
             "snap": "godot-4",
-            "homebrew": "--cask godot"
+            "homebrew": "--cask godot",
+            "opensuse": "godot"
         },
         "unavailableReason": "Installs latest Godot 4. For older distros: Ubuntu 24.04 and Debian 12 (Bookworm) only have `godot3` available use `sudo apt install -y godot3` for Godot 3.x instead.",
         "icon": {

@@ -10,7 +10,8 @@
       "nix": "discord",
       "flatpak": "com.discordapp.Discord",
       "snap": "discord",
-      "homebrew": "--cask discord"
+      "homebrew": "--cask discord",
+      "nobara": "discord"
     },
     "unavailableReason": "Not in official repos. Install via [Flatpak](https://flathub.org/en/apps/com.discordapp.Discord) or download from [discord.com/download](https://discord.com/download).",
     "icon": {
@@ -29,7 +30,8 @@
       "arch": "vesktop-bin",
       "nix": "vesktop",
       "flatpak": "dev.vencord.Vesktop",
-      "homebrew": "--cask vesktop"
+      "homebrew": "--cask vesktop",
+      "nobara": "vesktop"
     },
     "unavailableReason": "Not available in official repos. Check it on [Flatpak](https://flathub.org/en/apps/dev.vencord.Vesktop) or Download from [vesktop.dev/install/linux](https://vesktop.dev/install/linux/).",
     "icon": {
@@ -243,7 +245,8 @@
       "nix": "halloy",
       "flatpak": "org.squidowl.halloy",
       "snap": "halloy",
-      "homebrew": "--cask halloy"
+      "homebrew": "--cask halloy",
+      "nobara": "halloy"
     },
     "unavailableReason": "Not in official repos. Install it using [Flatpak](https://flathub.org/en/apps/org.squidowl.halloy) or [Snap](https://snapcraft.io/halloy) or see [halloy.chat](https://halloy.chat/) for more info.",
     "icon": {

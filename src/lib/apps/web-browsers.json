@@ -111,7 +111,8 @@
       "opensuse": "torbrowser-launcher",
       "nix": "tor-browser",
       "flatpak": "org.torproject.torbrowser-launcher",
-      "homebrew": "--cask tor-browser"
+      "homebrew": "--cask tor-browser",
+      "debian": "torbrowser-launcher"
     },
     "unavailableReason": "Debian requires editing /etc/apt/sources.list adding \"contrib\" to the end of the line that starts with \"deb\" or \"deb-src\" and `sudo apt update` before installing `sudo apt install -y torbrowser-launcher`. Or just download from [torproject.org](https://www.torproject.org/download/).",
     "icon": {
@@ -164,7 +165,8 @@
     "category": "Web Browsers",
     "targets": {
       "arch": "helium-browser-bin",
-      "homebrew": "--cask helium-browser"
+      "homebrew": "--cask helium-browser",
+      "nobara": "helium-browser-bin"
     },
     "unavailableReason": "Only available as AppImage or via AUR. Download from [helium.computer](https://helium.computer/).",
     "icon": {
@@ -284,7 +286,8 @@
       "arch": "qutebrowser",
       "fedora": "qutebrowser",
       "opensuse": "qutebrowser",
-      "nix": "qutebrowser"
+      "nix": "qutebrowser",
+      "homebrew": "--cask qutebrowser"
     },
     "unavailableReason": "Not in the official repos. See [qutebrowser.org](https://qutebrowser.org/doc/install.html) for installation instructions",
     "icon": {
@@ -372,7 +375,8 @@
       "arch": "opera",
       "homebrew": "--cask opera",
       "flatpak": "com.opera.Opera",
-      "snap": "opera"
+      "snap": "opera",
+      "opensuse": "opera"
     },
     "unavailableReason": "Not in most official repos. Use [Flatpak](https://flathub.org/en/apps/com.opera.Opera) or download from [opera.com](https://www.opera.com/opera).",
     "icon": {
